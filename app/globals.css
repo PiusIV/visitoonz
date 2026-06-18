@@ -1,8 +1,56 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* DESIGN TOKENS */
+:root {
+  --bg: #f4f1ec;
+  --text: #18140f;
+  --muted: #7a756e;
+  --gold: #8a5e0a;
+  --border: rgba(0, 0, 0, 0.09);
+}
+
+.dark {
+  --bg: #0a0a0a;
+  --text: #f0ede6;
+  --muted: #7a7672;
+  --gold: #c9a84c;
+  --border: rgba(255, 255, 255, 0.09);
+}
+
+/* TAILWIND MAPPING (critical) */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-gold: var(--gold);
+  --color-border: var(--border);
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  --font-heading: var(--font-heading);
+  --font-body: var(--font-body);
+}
+
+/* GLOBAL BASE */
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* @custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
+}
+
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
 }
 
 @theme inline {
@@ -12,15 +60,8 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
-}
+} */
