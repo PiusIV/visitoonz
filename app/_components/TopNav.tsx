@@ -13,7 +13,7 @@ export default function TopNav() {
   const path = usePathname();
 
   return (
-    <nav className="hidden lg:flex items-center justify-center">
+    <nav className="hidden lg:flex items-center justify-center sticky top-0 z-30">
       <div className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 backdrop-blur-md">
         {links.map(({ href, label, icon }) => {
           const active = path === href;
