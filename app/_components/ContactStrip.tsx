@@ -3,15 +3,15 @@ import Link from "next/link";
 
 export default function ContactStrip() {
   return (
-    <section className="border-t border-white/10">
+    <section className="border-t border-border">
       {/* Main CTA */}
-      <div className="grid md:grid-cols-2 border-b border-white/10">
+      <div className="grid md:grid-cols-2 border-b border-border">
         {/* Left — text */}
-        <div className="flex flex-col justify-center gap-6 px-8 md:px-16 py-16 border-r border-white/10">
+        <div className="flex flex-col justify-center gap-6 px-8 md:px-16 py-16 border-r border-border">
           <span className="text-[10px] tracking-[0.22em] uppercase text-[#C9A84C]">
             Get in touch
           </span>
-          <h2 className="font-cormorant text-4xl md:text-5xl font-light text-[#F0EDE6] leading-tight">
+          <h2 className="font-cormorant text-4xl md:text-5xl font-light text-text leading-tight">
             Have something
             <br />
             <em className="italic text-[#C9A84C]">in mind?</em>
@@ -29,7 +29,7 @@ export default function ContactStrip() {
             </Link>
             <Link
               href="/shop"
-              className="inline-flex items-center gap-2 text-[11px] tracking-widest uppercase text-[#7A7672] hover:text-[#F0EDE6] transition-colors"
+              className="inline-flex items-center gap-2 text-[11px] tracking-widest uppercase text-[#7A7672] hover:text-text transition-colors"
             >
               Browse shop <i className="ti ti-arrow-right" />
             </Link>
@@ -37,42 +37,40 @@ export default function ContactStrip() {
         </div>
 
         {/* Right — quick info blocks */}
-        <div className="flex flex-col divide-y divide-white/10">
+        <div className="flex flex-col divide-y divide-border">
           <div className="flex items-center gap-5 px-10 py-8">
-            <div className="w-10 h-10 flex items-center justify-center border border-white/10 flex-shrink-0">
+            <div className="w-10 h-10 flex items-center justify-center border border-border shrink-0">
               <i className="ti ti-clock text-[#C9A84C] text-lg" />
             </div>
             <div>
               <span className="text-[10px] tracking-[0.15em] uppercase text-[#C9A84C] block mb-1">
                 Response time
               </span>
-              <span className="text-[13px] text-[#F0EDE6]">
-                Within 24 hours
-              </span>
+              <span className="text-[13px] text-text">Within 24 hours</span>
             </div>
           </div>
           <div className="flex items-center gap-5 px-10 py-8">
-            <div className="w-10 h-10 flex items-center justify-center border border-white/10 flex-shrink-0">
+            <div className="w-10 h-10 flex items-center justify-center border border-border shrink-0">
               <i className="ti ti-brush text-[#C9A84C] text-lg" />
             </div>
             <div>
               <span className="text-[10px] tracking-[0.15em] uppercase text-[#C9A84C] block mb-1">
                 Custom orders
               </span>
-              <span className="text-[13px] text-[#F0EDE6]">
+              <span className="text-[13px] text-text">
                 Open for commissions
               </span>
             </div>
           </div>
           <div className="flex items-center gap-5 px-10 py-8">
-            <div className="w-10 h-10 flex items-center justify-center border border-white/10 flex-shrink-0">
+            <div className="w-10 h-10 flex items-center justify-center border border-border shrink-0">
               <i className="ti ti-map-pin text-[#C9A84C] text-lg" />
             </div>
             <div>
               <span className="text-[10px] tracking-[0.15em] uppercase text-[#C9A84C] block mb-1">
                 Location
               </span>
-              <span className="text-[13px] text-[#F0EDE6]">Lagos, Nigeria</span>
+              <span className="text-[13px] text-text">Lagos, Nigeria</span>
             </div>
           </div>
         </div>

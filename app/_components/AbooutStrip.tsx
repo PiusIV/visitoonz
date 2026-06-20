@@ -3,15 +3,15 @@ import Link from "next/link";
 
 export default function AboutStrip() {
   return (
-    <section className="border-t border-white/10">
+    <section className="border-t border-border">
       <div className="grid md:grid-cols-2 min-h-[400px]">
         {/* Left — text */}
-        <div className="flex flex-col justify-center gap-6 px-8 md:px-16 py-16 border-r border-white/10">
+        <div className="flex flex-col justify-center gap-6 px-8 md:px-16 py-16 border-r border-border">
           <span className="text-[10px] tracking-[0.22em] uppercase text-[#C9A84C]">
             The brand
           </span>
 
-          <h2 className="font-cormorant text-4xl md:text-5xl font-light text-[#F0EDE6] leading-tight">
+          <h2 className="font-cormorant text-4xl md:text-5xl font-light text-text leading-tight">
             Rooted in light,
             <br />
             <em className="italic text-[#C9A84C]">built by hand</em>
@@ -33,7 +33,7 @@ export default function AboutStrip() {
 
         {/* Right — stat blocks */}
         <div className="grid grid-cols-2">
-          <div className="flex flex-col justify-center gap-2 p-10 border-r border-b border-white/10">
+          <div className="flex flex-col justify-center gap-2 p-10 border-r border-b border-border">
             <span className="font-cormorant text-5xl font-light text-[#C9A84C]">
               3+
             </span>
@@ -41,7 +41,7 @@ export default function AboutStrip() {
               Categories
             </span>
           </div>
-          <div className="flex flex-col justify-center gap-2 p-10 border-b border-white/10">
+          <div className="flex flex-col justify-center gap-2 p-10 border-b border-border">
             <span className="font-cormorant text-5xl font-light text-[#C9A84C]">
               12+
             </span>
@@ -49,7 +49,7 @@ export default function AboutStrip() {
               Pieces available
             </span>
           </div>
-          <div className="flex flex-col justify-center gap-2 p-10 border-r border-white/10">
+          <div className="flex flex-col justify-center gap-2 p-10 border-r border-border">
             <span className="font-cormorant text-5xl font-light text-[#C9A84C]">
               100%
             </span>

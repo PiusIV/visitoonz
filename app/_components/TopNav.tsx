@@ -14,27 +14,28 @@ export default function TopNav() {
   const path = usePathname();
 
   return (
-    <nav className="hidden lg:flex items-center justify-center sticky top-0 z-30">
-      <div className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 backdrop-blur-md">
+    <nav className="hidden lg:flex items-center justify-center">
+      <div className="flex items-center gap-1 rounded-full border border-border px-3 py-2">
         {links.map(({ href, label, Icon }) => {
           const active = path === href;
-
           return (
             <Link
               key={href}
               href={href}
               aria-current={active ? "page" : undefined}
               className={`
-                relative flex items-center gap-2 rounded-full px-3 py-1.5 text-sm transition-all duration-200
+                relative flex items-center gap-2 rounded-full px-4 py-1.5 text-sm transition-all duration-200
                 ${
                   active
-                    ? "bg-[#C9A84C] text-black"
-                    : "text-neutral-400 hover:text-white hover:bg-white/10"
+                    ? "bg-[#C9A84C] text-text font-medium"
+                    : "text-text hover:text-white hover:bg-border"
                 }
               `}
             >
-              <Icon className="w-4 h-4" />
-              <span className="hidden xl:inline">{label}</span>
+              <Icon className="w-4 h-4 shrink-0" />
+              <span className="hidden xl:inline text-[11px] tracking-wide uppercase">
+                {label}
+              </span>
             </Link>
           );
         })}

@@ -2,6 +2,7 @@ import Image from "next/image";
 import heroPhoto from "@/public/hero-image.png";
 import HeroButton from "./HeroButton";
 import Link from "next/link";
+import Marquee from "react-fast-marquee";
 
 export default function Hero() {
   const curYear = new Date().getFullYear();
@@ -27,7 +28,7 @@ export default function Hero() {
       />
 
       {/* Content */}
-      <nav className="relative z-20 px-12 py-6 font-serif text-lg md:text-5xl text-white mt-12 text-center">
+      <nav className="relative z-20 px-12 py-6 font-serif text-lg md:text-5xl text-white mt-25 text-center">
         VISITOONZ ART ENTERPRISE - {curYear}
       </nav>
 
@@ -36,16 +37,19 @@ export default function Hero() {
           Perfection at its <br />
           <span className="italic font-bold text-gold">Peak</span>
         </h1>
-        <p className="font-body font-bold">
+        <p className="font-body font-bold text-justify">
           {" "}
           Fine photography prints, custom frames, mugs and throw pillows — each
           piece rooted in a moment worth keeping.
         </p>
         <div className="z-20 flex flex-row gap-2 md:gap-4">
-          <HeroButton>
-            <Link href="/shop">Explore the shop &rarr;</Link>
-          </HeroButton>
-          <HeroButton>View Featured Collections &darr;</HeroButton>
+          <Marquee speed={80} pauseOnHover={true} className="gap-4">
+            {" "}
+            <HeroButton>
+              <Link href="/shop">Explore the shop &rarr;</Link>
+            </HeroButton>
+            <HeroButton>View Featured Collections &darr;</HeroButton>
+          </Marquee>
         </div>
       </div>
     </section>
