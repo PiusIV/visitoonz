@@ -4,6 +4,7 @@ import { Cormorant_Garamond, DM_Sans } from "next/font/google";
 import Navbar from "@/app/_components/Navbar";
 import BottomNav from "./_components/BottomNav";
 import "./globals.css";
+import Footer from "./_components/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,7 +29,7 @@ const body = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Visitoonz Awt",
+  title: "Visitoonz Art",
   description: "The Digital Hub of Visitoonz Enterprise",
 };
 
@@ -46,6 +47,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <Navbar />
         {children}
+        <Footer />
         <BottomNav />
       </body>
     </html>

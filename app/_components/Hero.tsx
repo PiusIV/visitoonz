@@ -1,5 +1,5 @@
 import Image from "next/image";
-import heroPhoto from "@/public/hero-image.jpg";
+import heroPhoto from "@/public/hero-image.png";
 import HeroButton from "./HeroButton";
 import Link from "next/link";
 
@@ -28,13 +28,13 @@ export default function Hero() {
 
       {/* Content */}
       <nav className="relative z-20 px-12 py-6 font-serif text-lg md:text-5xl text-white mt-12 text-center">
-        New Collections - {curYear}
+        VISITOONZ ART ENTERPRISE - {curYear}
       </nav>
 
       <div className="relative z-20 flex-1 flex flex-col justify-left align-middle px-12 pb-16 text-white gap-25 md:gap-30">
         <h1 className="font-heading text-3xl md:text-5xl ">
-          the art of <br />
-          <span className="italic font-bold text-gold">ELEGANCE!</span>
+          Perfection at its <br />
+          <span className="italic font-bold text-gold">Peak</span>
         </h1>
         <p className="font-body font-bold">
           {" "}

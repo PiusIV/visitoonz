@@ -1,12 +1,13 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Home, Grid3X3, Heart, User } from "lucide-react";
 
 const links = [
-  { href: "/", label: "Home", icon: "ti-home" },
-  { href: "/shop", label: "Shop", icon: "ti-grid-3x3" },
-  { href: "/saved", label: "Saved", icon: "ti-heart" },
-  { href: "/account", label: "Account", icon: "ti-user" },
+  { href: "/", label: "Home", Icon: Home },
+  { href: "/shop", label: "Shop", Icon: Grid3X3 },
+  { href: "/about", label: "About Us", Icon: Heart },
+  { href: "/login", label: "Account", Icon: User },
 ];
 
 export default function TopNav() {
@@ -15,7 +16,7 @@ export default function TopNav() {
   return (
     <nav className="hidden lg:flex items-center justify-center sticky top-0 z-30">
       <div className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 backdrop-blur-md">
-        {links.map(({ href, label, icon }) => {
+        {links.map(({ href, label, Icon }) => {
           const active = path === href;
 
           return (
@@ -32,7 +33,7 @@ export default function TopNav() {
                 }
               `}
             >
-              <i className={`ti ${icon} text-base`} />
+              <Icon className="w-4 h-4" />
               <span className="hidden xl:inline">{label}</span>
             </Link>
           );

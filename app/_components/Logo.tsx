@@ -15,7 +15,7 @@ export default function Logo() {
           className="object-cover"
         />
       </div>
-      <span className="font-heading font-bold">Visitoonz Awt</span>
+      <span className="font-heading font-bold">Visitoonz Art Ent.</span>
     </div>
   );
 }
