@@ -1,11 +1,11 @@
 import Image from "next/image";
 import heroPhoto from "@/public/hero-image.png";
-import HeroButton from "./HeroButton";
+import HeroButton from "../_ui/HeroButton";
 import Link from "next/link";
 import Marquee from "react-fast-marquee";
 
 export default function Hero() {
-  const curYear = new Date().getFullYear();
+  // const curYear = new Date().getFullYear();
   return (
     <section className="relative w-full h-screen min-h-150 flex flex-col overflow-hidden border-t border-gray-700">
       {/* Background image */}
@@ -29,7 +29,7 @@ export default function Hero() {
 
       {/* Content */}
       <nav className="relative z-20 px-12 py-6 font-serif text-lg md:text-5xl text-white mt-25 text-center">
-        VISITOONZ ART ENTERPRISE - {curYear}
+        VISITOONZ ART ENTERPRISE
       </nav>
 
       <div className="relative z-20 flex-1 flex flex-col justify-left align-middle px-12 pb-16 text-white gap-25 md:gap-30">

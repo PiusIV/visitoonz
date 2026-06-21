@@ -31,7 +31,10 @@ export default function ThemeToggle() {
   };
 
   return (
-    <button onClick={toggle} className="p-2 hover:cursor-pointer">
+    <button
+      onClick={toggle}
+      className="p-3 hover:cursor-pointer bg-gold rounded-full"
+    >
       {isDark ? (
         <SunIcon className="w-5 h-5" />
       ) : (

@@ -11,8 +11,6 @@ import {
   FaArrowRight,
 } from "react-icons/fa";
 
-// ---- Content config ---------------------------------------------------
-
 const navColumns = [
   {
     heading: "Shop",
@@ -52,9 +50,17 @@ const navColumns = [
 ];
 
 const socialLinks = [
-  { label: "Instagram", href: "https://instagram.com", Icon: FaInstagram },
-  { label: "Facebook", href: "https://facebook.com", Icon: FaFacebook },
-  { label: "Twitter", href: "https://twitter.com", Icon: FaTwitter },
+  {
+    label: "Instagram",
+    href: "https://instagram.com/itz_visibility",
+    Icon: FaInstagram,
+  },
+  {
+    label: "Facebook",
+    href: "https://facebook.com/Visitoonz",
+    Icon: FaFacebook,
+  },
+  { label: "Twitter", href: "https://twitter.com/Pius_IV", Icon: FaTwitter },
   { label: "YouTube", href: "https://youtube.com", Icon: FaYoutube },
 ];
 
@@ -78,7 +84,7 @@ export default function Footer() {
   return (
     <footer
       style={{ backgroundColor: "var(--bg)", color: "var(--text)" }}
-      className="border-t"
+      className="border-t border-border"
     >
       <div
         style={{ borderColor: "var(--border)" }}
@@ -125,7 +131,7 @@ export default function Footer() {
                     borderColor: "var(--border)",
                     color: "var(--text)",
                   }}
-                  className="font-body w-full border-0 border-b bg-transparent py-2 text-sm outline-none transition-colors placeholder:opacity-50 focus:[border-color:var(--gold)] disabled:opacity-60"
+                  className="font-body w-full border-0 border-b bg-transparent py-2 text-sm outline-none transition-colors placeholder:opacity-50 focus:border-gold disabled:opacity-60"
                 />
 
                 <button
@@ -170,7 +176,7 @@ export default function Footer() {
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="font-body text-sm transition-colors hover:[color:var(--gold)]"
+                      className="font-body text-sm transition-colors hover:text-gold"
                       style={{ color: "var(--text)" }}
                     >
                       {link.label}
@@ -195,17 +201,17 @@ export default function Footer() {
 
             <div className="flex items-center gap-4">
               {socialLinks.map(({ label, href, Icon }) => (
-                <a
+                <Link
                   key={label}
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
                   style={{ color: "var(--muted)" }}
-                  className="transition-colors hover:text-[var(--gold)]"
+                  className="transition-colors hover:text-gold"
                 >
-                  <Icon className="h-[18px] w-[18px]" />
-                </a>
+                  <Icon className="h-4.5 w-4.5" />
+                </Link>
               ))}
             </div>
           </div>

@@ -12,7 +12,7 @@ export default function ProductCard({ product }: { product: Product }) {
       className="group border-r border-b border-white/10 flex flex-col"
     >
       {/* Image */}
-      <div className="relative aspect-[4/5] bg-[#1C1C1C] overflow-hidden">
+      <div className="relative aspect-4/5 bg-[#1C1C1C] overflow-hidden">
         {image ? (
           <Image
             src={image.url}

@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function AboutStrip() {
   return (
     <section className="border-t border-border">
-      <div className="grid md:grid-cols-2 min-h-[400px]">
+      <div className="grid md:grid-cols-2 min-h-100">
         {/* Left — text */}
         <div className="flex flex-col justify-center gap-6 px-8 md:px-16 py-16 border-r border-border">
           <span className="text-[10px] tracking-[0.22em] uppercase text-[#C9A84C]">

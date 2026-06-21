@@ -1,5 +1,6 @@
 // app/_components/ContactStrip.tsx
 import Link from "next/link";
+import { ArrowRight, Clock, Brush, MapPin } from "lucide-react";
 
 export default function ContactStrip() {
   return (
@@ -25,13 +26,13 @@ export default function ContactStrip() {
               href="/contact"
               className="inline-flex items-center gap-2 bg-[#C9A84C] text-[#0A0A0A] text-[11px] font-medium tracking-widest uppercase px-6 py-3 hover:bg-[#E8C97A] transition-colors"
             >
-              Contact us <i className="ti ti-arrow-right" />
+              Contact us <ArrowRight size={14} />
             </Link>
             <Link
               href="/shop"
               className="inline-flex items-center gap-2 text-[11px] tracking-widest uppercase text-[#7A7672] hover:text-text transition-colors"
             >
-              Browse shop <i className="ti ti-arrow-right" />
+              Browse shop <ArrowRight size={14} />
             </Link>
           </div>
         </div>
@@ -40,7 +41,7 @@ export default function ContactStrip() {
         <div className="flex flex-col divide-y divide-border">
           <div className="flex items-center gap-5 px-10 py-8">
             <div className="w-10 h-10 flex items-center justify-center border border-border shrink-0">
-              <i className="ti ti-clock text-[#C9A84C] text-lg" />
+              <Clock size={18} className="text-[#C9A84C]" />
             </div>
             <div>
               <span className="text-[10px] tracking-[0.15em] uppercase text-[#C9A84C] block mb-1">
@@ -51,20 +52,20 @@ export default function ContactStrip() {
           </div>
           <div className="flex items-center gap-5 px-10 py-8">
             <div className="w-10 h-10 flex items-center justify-center border border-border shrink-0">
-              <i className="ti ti-brush text-[#C9A84C] text-lg" />
+              <Brush size={18} className="text-[#C9A84C]" />
             </div>
             <div>
               <span className="text-[10px] tracking-[0.15em] uppercase text-[#C9A84C] block mb-1">
                 Custom orders
               </span>
               <span className="text-[13px] text-text">
-                Open for commissions
+                101% Active; we are open for business
               </span>
             </div>
           </div>
           <div className="flex items-center gap-5 px-10 py-8">
             <div className="w-10 h-10 flex items-center justify-center border border-border shrink-0">
-              <i className="ti ti-map-pin text-[#C9A84C] text-lg" />
+              <MapPin size={18} className="text-[#C9A84C]" />
             </div>
             <div>
               <span className="text-[10px] tracking-[0.15em] uppercase text-[#C9A84C] block mb-1">

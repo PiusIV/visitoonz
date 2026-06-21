@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import Logo from "./Logo";
-import ThemeToggle from "./ThemeToggle";
+import ThemeToggle from "../_ui/ThemeToggle";
 import TopNav from "./TopNav";
 
 export default function Navbar() {
