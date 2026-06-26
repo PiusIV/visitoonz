@@ -14,7 +14,7 @@ export default function TopNav() {
   const path = usePathname();
 
   return (
-    <nav className="hidden lg:flex items-center justify-center">
+    <nav className="hidden md:flex items-center justify-center">
       <div className="flex items-center gap-1 rounded-full border border-border px-3 py-2">
         {links.map(({ href, label, Icon }) => {
           const active = path === href;

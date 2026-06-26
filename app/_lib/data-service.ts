@@ -64,7 +64,7 @@ const PRODUCT_SELECT = `
   *,
   category:categories(
     id, name, slug,
-    parent:categories!parent_id(id, name, slug)
+    parent:categories(id, name, slug)
   ),
   images:product_images(url, alt_text, is_primary, sort_order),
   variants:product_variants(id, label, stock_note),
