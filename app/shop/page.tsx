@@ -9,18 +9,19 @@ export const metadata = {
 };
 
 type Props = {
-  searchParams: { category?: string };
+  searchParams: Promise<{ category?: string }>;
 };
 
 export default async function ShopPage({ searchParams }: Props) {
+  const { category } = await searchParams;
+
   const [products, categories] = await Promise.all([
     getAllProducts(),
     getAllCategories(),
   ]);
 
-  const activeFilter = searchParams.category ?? "all";
+  const activeFilter = category ?? "all";
 
-  // Filter on the server
   const filtered =
     activeFilter === "all"
       ? products
@@ -36,7 +37,6 @@ export default async function ShopPage({ searchParams }: Props) {
       <Suspense fallback={<Spinner />}>
         <ShopClient
           products={filtered}
-          allProducts={products}
           categories={categories}
           activeFilter={activeFilter}
         />

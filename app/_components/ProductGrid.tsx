@@ -4,7 +4,6 @@ import ProductCard from "./ProductCard";
 import EmptyState from "./EmptyState";
 
 export default function ProductGrid({ products }: { products: Product[] }) {
-  // console.log("ProductGrid received:", products.length);
   if (!products.length) return <EmptyState />;
 
   return (

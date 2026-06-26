@@ -8,7 +8,6 @@ import { XIcon } from "lucide-react";
 
 type Props = {
   products: Product[];
-  allProducts: Product[];
   categories: Category[];
   activeFilter: string;
 };
