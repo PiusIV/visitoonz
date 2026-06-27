@@ -8,11 +8,13 @@ export const metadata = {
   description: "Interior Decor, Custom Branding, Multimedia Production",
 };
 
-type Props = {
+interface SearchParamsProps {
+  // searchParams: { category?: string };
+  // typing searchParams as a promise is standard in next.js, hence the await keyword
   searchParams: Promise<{ category?: string }>;
-};
+}
 
-export default async function ShopPage({ searchParams }: Props) {
+export default async function ShopPage({ searchParams }: SearchParamsProps) {
   const { category } = await searchParams;
 
   const [products, categories] = await Promise.all([
@@ -33,7 +35,7 @@ export default async function ShopPage({ searchParams }: Props) {
         });
 
   return (
-    <main className="min-h-screen bg-bg">
+    <main className="min-h-screen bg-bg mt-5">
       <Suspense fallback={<Spinner />}>
         <ShopClient
           products={filtered}

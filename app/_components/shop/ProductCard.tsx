@@ -6,6 +6,7 @@ import { CameraIcon } from "lucide-react";
 export default function ProductCard({ product }: { product: Product }) {
   const image = getPrimaryImage(product);
 
+  // here the query param value is passed dynamically
   const href = product.category
     ? `/shop/${product.category.slug}/${product.slug}`
     : `/shop/${product.slug}`;
@@ -16,7 +17,7 @@ export default function ProductCard({ product }: { product: Product }) {
       className="group border-r border-b border-border flex flex-col"
     >
       {/* Image */}
-      <div className="relative aspect-[4/5] bg-bg overflow-hidden">
+      <div className="relative aspect-4/5 bg-bg overflow-hidden">
         {image ? (
           <Image
             src={image.url}
@@ -27,7 +28,7 @@ export default function ProductCard({ product }: { product: Product }) {
           />
         ) : (
           <div className="absolute inset-0 flex items-center justify-center">
-            <CameraIcon className="w-8 h-8 text-white/10" />
+            <CameraIcon className="w-8 h-8 text-text" />
           </div>
         )}
 

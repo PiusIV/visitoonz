@@ -1,5 +1,5 @@
 import { supabase } from "@/app/_lib/supabase";
-// ─── TYPES ──────────────────────────────────────────────
+// ─── TYPES
 
 export type Category = {
   id: string;
@@ -73,7 +73,7 @@ const PRODUCT_SELECT = `
   tags:product_tags(tag:tags(name, slug))
 `;
 
-// ─── HELPERS ────────────────────────────────────────────
+// ─── HELPERS
 
 export function getPrimaryImage(product: Product): ProductImage | null {
   return product.images.find((i) => i.is_primary) ?? product.images[0] ?? null;

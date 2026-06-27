@@ -8,11 +8,11 @@ type FilterTab = {
   subcategories?: Category[];
 };
 
-type Props = {
+interface Props {
   categories: Category[];
   active: string;
   onChange: (slug: string) => void;
-};
+}
 
 export default function CategoryFilterBar({
   categories,
@@ -44,7 +44,7 @@ export default function CategoryFilterBar({
               {subCount > 0 && (
                 <span
                   className={`text-[9px] px-1.5 py-0.5 rounded-full ${
-                    isActive ? "bg-[#0A0A0A]/20" : "bg-white/10"
+                    isActive ? "bg-bg" : "bg-border"
                   }`}
                 >
                   {subCount}

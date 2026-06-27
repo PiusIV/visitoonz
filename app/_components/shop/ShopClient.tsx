@@ -2,7 +2,7 @@
 import { useRouter } from "next/navigation";
 import { Product, Category } from "@/app/_lib/data-service";
 import CategoryFilterBar from "@/app/_components/shop/CategoryFilterBar";
-import ProductGrid from "@/app/_components/ProductGrid";
+import ProductGrid from "@/app/_components/shop/ProductGrid";
 import ShopHeader from "@/app/_components/shop/ShopHeader";
 import { XIcon } from "lucide-react";
 
