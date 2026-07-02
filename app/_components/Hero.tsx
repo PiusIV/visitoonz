@@ -1,8 +1,7 @@
-import Image from "next/image";
 import heroPhoto from "@/public/hero-image.png";
-import HeroButton from "../_ui/HeroButton";
+import Image from "next/image";
 import Link from "next/link";
-import Marquee from "react-fast-marquee";
+import HeroButton from "../_ui/HeroButton";
 
 export default function Hero() {
   // const curYear = new Date().getFullYear();
@@ -43,13 +42,11 @@ export default function Hero() {
           piece rooted in a moment worth keeping.
         </p>
         <div className="z-20 flex flex-row gap-2 md:gap-4">
-          <Marquee speed={80} pauseOnHover={true} className="gap-4">
-            {" "}
-            <HeroButton>
-              <Link href="/shop">Explore the shop &rarr;</Link>
-            </HeroButton>
-            <HeroButton>View Featured Collections &darr;</HeroButton>
-          </Marquee>
+          {" "}
+          <HeroButton>
+            <Link href="/shop">Explore the shop &rarr;</Link>
+          </HeroButton>
+          <HeroButton>View Featured Collections &darr;</HeroButton>
         </div>
       </div>
     </section>
