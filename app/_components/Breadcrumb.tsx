@@ -5,7 +5,7 @@ type Crumb = { label: string; href?: string };
 
 export default function Breadcrumb({ crumbs }: { crumbs: Crumb[] }) {
   return (
-    <nav className="flex items-center gap-2 px-6 md:px-12 py-4 border-b border-white/10">
+    <nav className="flex items-center gap-2 px-6 md:px-12 py-4 border-b border-border mt-20">
       {crumbs.map((crumb, i) => (
         <span key={i} className="flex items-center gap-2">
           {crumb.href ? (

@@ -1,4 +1,5 @@
 import { supabase } from "@/app/_lib/supabase";
+
 // ─── TYPES
 
 export type Category = {
@@ -133,12 +134,29 @@ export async function getAllCategories(): Promise<Category[]> {
 export async function getCategoryBySlug(slug: string): Promise<Category> {
   const { data, error } = await supabase
     .from("categories")
-    .select("*, subcategories:categories(id, name, slug)")
+    .select(
+      `
+      *,
+      subcategories:categories(id, name, slug, description)
+    `,
+    )
     .eq("slug", slug)
     .single();
 
   if (error) throw new Error(error.message);
-  return data as Category;
+
+  // Manually resolve parent
+  if (data.parent_id) {
+    const { data: parent } = await supabase
+      .from("categories")
+      .select("id, name, slug")
+      .eq("id", data.parent_id)
+      .single();
+
+    return { ...data, parent } as Category;
+  }
+
+  return { ...data, parent: null } as Category;
 }
 
 // ─── PRODUCTS ───────────────────────────────────────────
@@ -185,7 +203,7 @@ export async function getProductsByCategory(
     .from("categories")
     .select(`id, subcategories:categories(id, subcategories:categories(id))`)
     .eq("slug", categorySlug)
-    .single();
+    .maybeSingle();
 
   if (catError) throw new Error(catError.message);
 

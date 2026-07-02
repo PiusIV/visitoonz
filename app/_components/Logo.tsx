@@ -8,7 +8,7 @@ export default function Logo() {
       <div className="object-cover justify-center mt-1.5">
         {" "}
         <Image
-          src="/visi-logo.jpg"
+          src="/gold-logo.jpg"
           alt="logo"
           width={20}
           height={20}
