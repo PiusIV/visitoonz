@@ -1,4 +1,5 @@
 // app/_components/AboutStrip.tsx
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 export default function AboutStrip() {
@@ -27,7 +28,7 @@ export default function AboutStrip() {
             href="/about"
             className="inline-flex items-center gap-2 w-fit text-[11px] tracking-widest uppercase text-[#C9A84C] border border-[#C9A84C]/40 px-5 py-2.5 hover:bg-[#C9A84C] hover:text-[#0A0A0A] transition-all"
           >
-            Our story <i className="ti ti-arrow-right" />
+            Our story <ArrowRight className="w-3 h-3" />
           </Link>
         </div>
 

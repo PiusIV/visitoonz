@@ -1,13 +1,13 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, Grid3X3, Heart, User } from "lucide-react";
+import { Home, Grid3X3, Heart, Mail } from "lucide-react";
 
 const links = [
   { href: "/", label: "Home", Icon: Home },
   { href: "/shop", label: "Shop", Icon: Grid3X3 },
   { href: "/about", label: "About Us", Icon: Heart },
-  { href: "/login", label: "Account", Icon: User },
+  { href: "/contact", label: "contact us", Icon: Mail },
 ];
 
 export default function BottomNav() {
