@@ -2,7 +2,7 @@
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
-export default function AboutStrip() {
+export default function InquiryStrip() {
   return (
     <section className="border-t border-border">
       <div className="grid md:grid-cols-2 min-h-100">

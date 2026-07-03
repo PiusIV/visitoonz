@@ -67,12 +67,17 @@ export default function ContactStrip() {
             <div className="w-10 h-10 flex items-center justify-center border border-border shrink-0">
               <MapPin size={18} className="text-[#C9A84C]" />
             </div>
-            <div>
-              <span className="text-[10px] tracking-[0.15em] uppercase text-[#C9A84C] block mb-1">
+            <a
+              href="https://maps.app.goo.gl/sCUuHL4Ams16eqAG8"
+              className="hover:bg-[#C9A84C] hover:px-2 transition-all duration-150 hover:text-text"
+            >
+              <span className="text-[10px] tracking-[0.15em] uppercase text-[#C9A84C] hover:text-text block mb-1">
                 Location
               </span>
-              <span className="text-[13px] text-text">Lagos, Nigeria</span>
-            </div>
+              <span className="text-[13px] text-text hover:cursor-pointer">
+                <span>Owerri, Imo, Nigeria</span>
+              </span>
+            </a>
           </div>
         </div>
       </div>

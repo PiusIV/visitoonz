@@ -4,7 +4,7 @@ import Marquee from "react-fast-marquee";
 
 export default function AboutHero() {
   return (
-    <section className="border-b border-border px-6 md:px-12 min-h-screen py-20 md:py-32 max-w-4xl flex flex-col justify-center">
+    <section className="border-b overflow-hidden border-border px-6 md:px-12 min-h-screen py-20 md:py-32 max-w-4xl flex flex-col justify-center">
       {/* Marquee */}
       <motion.div
         initial={{ opacity: 0 }}

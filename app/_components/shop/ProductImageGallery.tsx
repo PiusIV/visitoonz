@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { ProductImage } from "@/app/_lib/data-service";
+import { CameraIcon } from "lucide-react";
 
 export default function ProductImageGallery({
   images,
@@ -16,8 +17,9 @@ export default function ProductImageGallery({
 
   if (!images.length) {
     return (
-      <div className="relative aspect-4/5 bg-bg2 flex items-center justify-center">
-        <i className="ti ti-camera text-6xl text-white/10" />
+      <div className="relative aspect-4/5 bg-bg flex items-center justify-center">
+        {/* <i className="ti ti-camera text-6xl text-white/10" /> */}
+        <CameraIcon className="text-text w-6 h-6" />
       </div>
     );
   }
@@ -25,7 +27,7 @@ export default function ProductImageGallery({
   return (
     <div className="flex flex-col gap-3">
       {/* Main image */}
-      <div className="relative aspect-4/5 bg-bg2 overflow-hidden">
+      <div className="relative aspect-4/5 bg-bg overflow-hidden">
         <Image
           src={sorted[active].url}
           alt={sorted[active].alt_text ?? name}

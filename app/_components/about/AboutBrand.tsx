@@ -13,13 +13,13 @@ export default function AboutBrand() {
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.7, ease: "easeOut" }}
         viewport={{ once: true }}
-        className="relative aspect-4/5 bg-bg border-r border-border border-t"
+        className="relative aspect-4/5 bg-bg border-r border-border border-t p-8 "
       >
         <Image
           src={goldImage}
           alt="visi-gold-image"
           fill
-          className="object-cover"
+          className="object-cover rounded-2xl md:rounded-none"
         />
       </motion.div>
 
