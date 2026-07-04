@@ -11,6 +11,7 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  allowedDevOrigins: ["https://avenging-five-waking.ngrok-free.dev"],
 };
 
 export default nextConfig;

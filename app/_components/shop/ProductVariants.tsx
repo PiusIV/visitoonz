@@ -1,4 +1,3 @@
-// app/_components/shop/ProductVariants.tsx
 "use client";
 import { useState } from "react";
 import { ProductVariant } from "@/app/_lib/data-service";
@@ -28,7 +27,7 @@ export default function ProductVariants({
               ${
                 selected === variant.id
                   ? "bg-[#C9A84C] text-[#0A0A0A] border-[#C9A84C]"
-                  : "text-muted border-border hover:text-text hover:border-white/30"
+                  : "text-muted border-border hover:text-text hover:border-border"
               }`}
           >
             {variant.label}

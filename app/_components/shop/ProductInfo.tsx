@@ -1,4 +1,3 @@
-// app/_components/shop/ProductInfo.tsx
 import { Product } from "@/app/_lib/data-service";
 
 export default function ProductInfo({ product }: { product: Product }) {

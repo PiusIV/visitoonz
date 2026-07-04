@@ -1,4 +1,3 @@
-// app/_components/ContactCTA.tsx
 import Link from "next/link";
 
 export default function ContactCTA({ message }: { message?: string }) {
