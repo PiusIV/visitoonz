@@ -38,7 +38,7 @@ export default function WhatsAppButton() {
       href="https://wa.me/2348131318140?text=Hello%20I%20need%20your%20service"
       target="_blank"
       rel="noopener noreferrer"
-      className={`fixed bottom-6 right-6 z-50 flex items-center gap-2 transition-all duration-300 ${
+      className={`fixed bottom-20 right-6 z-50 flex items-center gap-2 transition-all duration-300 ${
         show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       }`}
     >
