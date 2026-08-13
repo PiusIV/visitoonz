@@ -27,11 +27,16 @@ export async function middleware(request: NextRequest) {
       },
     );
 
-    const {
-      data: { session },
-    } = await supabase.auth.getSession();
+    // const {
+    //   data: { session },
+    // } = await supabase.auth.getSession();
 
-    if (!session) {
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    // redirect back to login if user is not logged in
+    if (!user) {
       return NextResponse.redirect(new URL("/admin/login", request.url));
     }
 

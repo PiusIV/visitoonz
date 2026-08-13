@@ -21,8 +21,8 @@ export default function AdminLogin() {
       password,
     });
 
-    console.log("login data:", data);
-    console.log("login error:", error);
+    // console.log("login data:", data);
+    // console.log("login error:", error);
 
     setLoading(false);
 
@@ -45,7 +45,7 @@ export default function AdminLogin() {
           <span className="text-[10px] tracking-[0.22em] uppercase text-gold block mb-3">
             Admin
           </span>
-          <h1 className="font-cormorant text-4xl font-light text-text mb-2">
+          <h1 className="font-cormorant italic text-4xl font-light text-text mb-2">
             Sign in
           </h1>
           <p className="text-[12px] text-muted">
