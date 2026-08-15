@@ -1,10 +1,6 @@
-// app/login/page.tsx
-
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
-
 import { Suspense } from "react";
-import GoogleSignInButton from "@/app/_components/GoogleSignInButton";
+import GoogleSignInButton from "@/app/_components/login/GoogleSignInButton";
+import Spinner from "../_ui/Spinner";
 
 export default function LoginPage() {
   return (
@@ -18,11 +14,11 @@ export default function LoginPage() {
             Sign in to shop
           </h1>
           <p className="text-[12px] text-muted">
-            Sign in with Google to browse and order our pieces
+            Sign in with Google to browse and place your orders in the shop
           </p>
         </div>
 
-        <Suspense fallback={null}>
+        <Suspense fallback={<Spinner />}>
           <GoogleSignInButton />
         </Suspense>
       </div>
