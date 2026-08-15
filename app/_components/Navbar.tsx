@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Logo from "./Logo";
 import ThemeToggle from "../_ui/ThemeToggle";
 import TopNav from "./TopNav";
+import UserMenu from "./UserMenu";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -20,7 +21,10 @@ export default function Navbar() {
     >
       <Logo />
       <TopNav />
-      <ThemeToggle />
+      <div className="flex items-center gap-4">
+        <ThemeToggle />
+        <UserMenu />
+      </div>
     </div>
   );
 }

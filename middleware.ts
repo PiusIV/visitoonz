@@ -4,6 +4,11 @@ import { updateSession } from "@/app/_lib/supabase-middleware";
 
 export async function middleware(request: NextRequest) {
   console.log("middlware");
+  console.log(
+    "PROXY RUNNING:",
+    request.nextUrl.pathname,
+    request.cookies.getAll(),
+  );
   const { pathname } = request.nextUrl;
 
   const isAdminRoute =
