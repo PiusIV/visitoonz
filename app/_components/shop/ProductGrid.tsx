@@ -7,7 +7,7 @@ export default function ProductGrid({ products }: { products: Product[] }) {
   if (!products.length) return <EmptyState />;
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 border-t border-border">
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 border-t border-border">
       {products.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}
