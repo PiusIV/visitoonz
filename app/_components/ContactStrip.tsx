@@ -1,4 +1,3 @@
-// app/_components/ContactStrip.tsx
 import Link from "next/link";
 import { ArrowRight, Clock, Brush, MapPin } from "lucide-react";
 

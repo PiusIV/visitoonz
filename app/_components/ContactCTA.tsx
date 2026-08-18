@@ -1,3 +1,4 @@
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 export default function ContactCTA({ message }: { message?: string }) {
@@ -17,7 +18,7 @@ export default function ContactCTA({ message }: { message?: string }) {
         href="/contact"
         className="inline-flex items-center gap-2 bg-[#C9A84C] text-[#0A0A0A] text-[11px] font-medium tracking-widest uppercase px-6 py-3 w-fit hover:bg-[#E8C97A] transition-colors"
       >
-        Get in touch <i className="ti ti-arrow-right" />
+        Get in touch <ArrowRight size={14} />
       </Link>
     </div>
   );

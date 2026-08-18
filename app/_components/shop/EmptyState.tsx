@@ -1,4 +1,4 @@
-// app/_components/EmptyState.tsx
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 export default function EmptyState() {
@@ -16,7 +16,8 @@ export default function EmptyState() {
         href="/shop"
         className="inline-flex items-center gap-2 bg-[#C9A84C] text-[#0A0A0A] text-[11px] font-medium tracking-widest uppercase px-5 py-2.5"
       >
-        Browse all <i className="ti ti-arrow-right" />
+        Browse all <ArrowRight className="w-4 h-4" />
+        {/* <i className="ti ti-arrow-right" /> */}
       </Link>
     </div>
   );

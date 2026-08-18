@@ -1,4 +1,3 @@
-// app/_components/GoogleSignInButton.tsx
 "use client";
 import { useSearchParams } from "next/navigation";
 import { supabase } from "@/app/_lib/supabase";

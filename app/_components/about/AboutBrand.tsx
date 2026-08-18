@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import goldImage from "@/public/gold-logo.jpg";
+import { ArrowRight } from "lucide-react";
 
 export default function AboutBrand() {
   return (
@@ -91,7 +92,7 @@ export default function AboutBrand() {
               href="/contact"
               className="inline-flex items-center gap-2 border border-gold/40 text-[11px] tracking-widest uppercase text-gold px-5 py-3 hover:bg-gold hover:text-[#0A0A0A] transition-all"
             >
-              Contact Us <i className="ti ti-arrow-right" />
+              Contact Us <ArrowRight className="w-5 h-5" />
             </Link>
           </motion.div>
         </motion.div>
