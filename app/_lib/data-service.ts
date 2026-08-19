@@ -38,6 +38,7 @@ export type Product = {
   description: string | null;
   is_available: boolean;
   is_featured: boolean;
+  base_price: number | null; // ← add this
   attributes: Record<string, unknown>;
   created_at: string;
   category: {
@@ -299,4 +300,78 @@ export async function getProductsByTag(tagSlug: string): Promise<Product[]> {
     (row) => row.product,
   );
   return enrichWithParent(products);
+}
+
+// app/_lib/data-service.ts
+
+export async function createProduct(input: {
+  name: string;
+  slug: string;
+  description: string;
+  base_price: number;
+  category_id: string;
+  tagIds: string[];
+  images: { url: string; is_primary: boolean; sort_order: number }[];
+}) {
+  // 1 — Insert product
+  const { data: product, error: productError } = await supabase
+    .from("products")
+    .insert({
+      name: input.name,
+      slug: input.slug,
+      description: input.description,
+      base_price: input.base_price,
+      category_id: input.category_id,
+      is_available: true,
+    })
+    .select()
+    .single();
+
+  if (productError) throw new Error(productError.message);
+
+  // 2 — Insert images
+  if (input.images.length > 0) {
+    const imageRows = input.images.map((img) => ({
+      product_id: product.id,
+      url: img.url,
+      is_primary: img.is_primary,
+      sort_order: img.sort_order,
+    }));
+
+    const { error: imagesError } = await supabase
+      .from("product_images")
+      .insert(imageRows);
+
+    if (imagesError) throw new Error(imagesError.message);
+  }
+
+  // 3 — Insert tags
+  if (input.tagIds.length > 0) {
+    const tagRows = input.tagIds.map((tagId) => ({
+      product_id: product.id,
+      tag_id: tagId,
+    }));
+
+    const { error: tagsError } = await supabase
+      .from("product_tags")
+      .insert(tagRows);
+
+    if (tagsError) throw new Error(tagsError.message);
+  }
+
+  return product;
+}
+
+export async function uploadProductImage(file: File, categorySlug: string) {
+  const fileName = `${Date.now()}-${file.name.replace(/\s+/g, "-").toLowerCase()}`;
+  const path = `${categorySlug}/${fileName}`;
+
+  const { error: uploadError } = await supabase.storage
+    .from("product-images")
+    .upload(path, file);
+
+  if (uploadError) throw new Error(uploadError.message);
+
+  const { data } = supabase.storage.from("product-images").getPublicUrl(path);
+  return data.publicUrl;
 }

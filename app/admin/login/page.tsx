@@ -15,13 +15,10 @@ export default function AdminLogin() {
     setError("");
     setLoading(true);
 
-    const { data, error } = await supabase.auth.signInWithPassword({
+    const { error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
-
-    // console.log("login data:", data);
-    // console.log("login error:", error);
 
     setLoading(false);
 

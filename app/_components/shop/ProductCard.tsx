@@ -6,7 +6,6 @@ import { CameraIcon } from "lucide-react";
 export default function ProductCard({ product }: { product: Product }) {
   const image = getPrimaryImage(product);
 
-  // here the query param value is passed dynamically
   const href = product.category
     ? `/shop/${product.category.slug}/${product.slug}`
     : `/shop/${product.slug}`;
@@ -55,6 +54,12 @@ export default function ProductCard({ product }: { product: Product }) {
           <p className="text-[12px] text-[#7A7672] mt-1 line-clamp-2 leading-relaxed">
             {product.description}
           </p>
+        )}
+
+        {product.base_price != null && (
+          <span className="text-sm font-semibold text-text mt-1">
+            ₦{product.base_price.toLocaleString()}
+          </span>
         )}
 
         <span className="mt-auto pt-2 text-[11px] tracking-widest uppercase text-[#7A7672] group-hover:text-[#C9A84C] transition-colors">
