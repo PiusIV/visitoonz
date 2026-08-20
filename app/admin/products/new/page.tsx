@@ -1,25 +1,14 @@
 "use client";
-import { useState, useEffect, useCallback } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
-import {
-  getAllCategories,
-  getAllTags,
-  createProduct,
-  uploadProductImage,
-  Category,
-} from "@/app/_lib/data-service";
-import {
-  flattenCategories,
-  findCategoryById,
-  slugify,
-  FlatCategory,
-} from "@/app/_lib/admin-helpers";
+import { createProduct, uploadProductImage } from "@/app/_lib/data-service";
+import { findCategoryById, slugify } from "@/app/_lib/admin-helpers";
+import { useCategoriesAndTags } from "@/app/_lib/hooks/useCategoriesAndTags";
+import { useImageUpload } from "@/app/_lib/hooks/useImageUpload";
 import ProductFormFields from "@/app/_components/admin/ProductFormFields";
 import CategorySelect from "@/app/_components/admin/CategorySelect";
 import TagSelector from "@/app/_components/admin/TagSelector";
 import ImagePreviewGrid from "@/app/_components/admin/ImagePreviewGrid";
-
-type Tag = { id: string; name: string; slug: string };
 
 type FormState = {
   name: string;
@@ -31,15 +20,11 @@ type FormState = {
 
 export default function NewProductPage() {
   const router = useRouter();
+  const { categories, tags, flatCategories } = useCategoriesAndTags();
+  const { images, previews, handleSelect, remove } = useImageUpload();
 
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [tags, setTags] = useState<Tag[]>([]);
-  const [flatCategories, setFlatCategories] = useState<FlatCategory[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
-  const [images, setImages] = useState<File[]>([]);
-  const [previews, setPreviews] = useState<string[]>([]);
   const [selectedTagIds, setSelectedTagIds] = useState<string[]>([]);
-
   const [form, setForm] = useState<FormState>({
     name: "",
     slug: "",
@@ -47,26 +32,6 @@ export default function NewProductPage() {
     base_price: "",
     category_id: "",
   });
-
-  const loadInitialData = useCallback(async (): Promise<void> => {
-    const cats = await getAllCategories();
-    const tagList = await getAllTags();
-    setCategories(cats);
-    setTags(tagList as Tag[]);
-    setFlatCategories(flattenCategories(cats));
-  }, []);
-
-  useEffect(() => {
-    let cancelled = false;
-    async function run(): Promise<void> {
-      await loadInitialData();
-      if (cancelled) return;
-    }
-    run();
-    return () => {
-      cancelled = true;
-    };
-  }, [loadInitialData]);
 
   function handleChange(
     e: React.ChangeEvent<
@@ -77,25 +42,9 @@ export default function NewProductPage() {
     const value = e.target.value;
     setForm((prev) => {
       const updated: FormState = { ...prev, [name]: value };
-      if (name === "name") {
-        updated.slug = slugify(value);
-      }
+      if (name === "name") updated.slug = slugify(value);
       return updated;
     });
-  }
-
-  function handleImageSelect(e: React.ChangeEvent<HTMLInputElement>): void {
-    const files = Array.from(e.target.files || []);
-    setImages((prev) => [...prev, ...files]);
-    setPreviews((prev) => [
-      ...prev,
-      ...files.map((f) => URL.createObjectURL(f)),
-    ]);
-  }
-
-  function removeImage(index: number): void {
-    setImages((prev) => prev.filter((_, i) => i !== index));
-    setPreviews((prev) => prev.filter((_, i) => i !== index));
   }
 
   function toggleTag(tagId: string): void {
@@ -109,25 +58,17 @@ export default function NewProductPage() {
   async function handleSubmit(e: React.FormEvent): Promise<void> {
     e.preventDefault();
 
-    if (!form.category_id) {
-      alert("Please select a category");
-      return;
-    }
-    if (images.length === 0) {
-      alert("Please add at least one image");
-      return;
-    }
+    if (!form.category_id) return alert("Please select a category");
+    if (images.length === 0) return alert("Please add at least one image");
 
     setLoading(true);
-
     try {
       const category = findCategoryById(categories, form.category_id);
       const categorySlug = category?.slug ?? "misc";
 
       const uploadedUrls: string[] = [];
       for (const file of images) {
-        const url = await uploadProductImage(file, categorySlug);
-        uploadedUrls.push(url);
+        uploadedUrls.push(await uploadProductImage(file, categorySlug));
       }
 
       const imageRows = uploadedUrls.map((url, i) => ({
@@ -174,13 +115,11 @@ export default function NewProductPage() {
           onChange={handleChange}
           urlPreview={urlPreview}
         />
-
         <CategorySelect
           value={form.category_id}
           options={flatCategories}
           onChange={handleChange}
         />
-
         <TagSelector
           tags={tags}
           selectedIds={selectedTagIds}
@@ -195,12 +134,12 @@ export default function NewProductPage() {
             type="file"
             accept="image/*"
             multiple
-            onChange={handleImageSelect}
+            onChange={handleSelect}
             className="text-[13px] text-text"
           />
           <ImagePreviewGrid
             previews={previews}
-            onRemove={removeImage}
+            onRemove={remove}
             showPrimaryBadge
           />
         </div>

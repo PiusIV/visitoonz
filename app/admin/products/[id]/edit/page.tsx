@@ -1,26 +1,17 @@
 "use client";
 import { useState, useEffect, useCallback } from "react";
 import { useRouter, useParams } from "next/navigation";
-import {
-  getAllCategories,
-  getAllTags,
-  uploadProductImage,
-  Category,
-} from "@/app/_lib/data-service";
+import { uploadProductImage } from "@/app/_lib/data-service";
 import { supabase } from "@/app/_lib/supabase";
-import {
-  flattenCategories,
-  findCategoryById,
-  FlatCategory,
-} from "@/app/_lib/admin-helpers";
+import { findCategoryById } from "@/app/_lib/admin-helpers";
+import { useCategoriesAndTags } from "@/app/_lib/hooks/useCategoriesAndTags";
+import { useImageUpload } from "@/app/_lib/hooks/useImageUpload";
+import { useExistingImages } from "@/app/_lib/hooks/useExistingImages";
 import ProductFormFields from "@/app/_components/admin/ProductFormFields";
 import CategorySelect from "@/app/_components/admin/CategorySelect";
 import TagSelector from "@/app/_components/admin/TagSelector";
 import ImagePreviewGrid from "@/app/_components/admin/ImagePreviewGrid";
 import ExistingImageGrid from "@/app/_components/admin/ExistingImageGrid";
-
-type Tag = { id: string; name: string; slug: string };
-type ExistingImage = { id: string; url: string; is_primary: boolean };
 
 type FormState = {
   name: string;
@@ -35,16 +26,23 @@ export default function EditProductPage() {
   const params = useParams<{ id: string }>();
   const productId = params.id;
 
+  const { categories, tags, flatCategories } = useCategoriesAndTags();
+  const {
+    images: newImages,
+    previews: newPreviews,
+    handleSelect: handleNewImageSelect,
+    remove: removeNewImage,
+  } = useImageUpload();
+  const {
+    existingImages,
+    setExistingImages,
+    removeExistingImage,
+    setPrimaryImage,
+  } = useExistingImages();
+
   const [loading, setLoading] = useState<boolean>(true);
   const [saving, setSaving] = useState<boolean>(false);
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [tags, setTags] = useState<Tag[]>([]);
-  const [flatCategories, setFlatCategories] = useState<FlatCategory[]>([]);
-  const [existingImages, setExistingImages] = useState<ExistingImage[]>([]);
-  const [newImages, setNewImages] = useState<File[]>([]);
-  const [newPreviews, setNewPreviews] = useState<string[]>([]);
   const [selectedTagIds, setSelectedTagIds] = useState<string[]>([]);
-
   const [form, setForm] = useState<FormState>({
     name: "",
     slug: "",
@@ -53,15 +51,9 @@ export default function EditProductPage() {
     category_id: "",
   });
 
-  const loadData = useCallback(async (): Promise<void> => {
+  const loadProduct = useCallback(async (): Promise<void> => {
     setLoading(true);
     try {
-      const cats = await getAllCategories();
-      const tagList = await getAllTags();
-      setCategories(cats);
-      setTags(tagList as Tag[]);
-      setFlatCategories(flattenCategories(cats));
-
       const result = await supabase
         .from("products")
         .select(
@@ -90,19 +82,19 @@ export default function EditProductPage() {
     } finally {
       setLoading(false);
     }
-  }, [productId]);
+  }, [productId, setExistingImages]);
 
   useEffect(() => {
     let cancelled = false;
     async function run(): Promise<void> {
-      await loadData();
+      await loadProduct();
       if (cancelled) return;
     }
     run();
     return () => {
       cancelled = true;
     };
-  }, [loadData]);
+  }, [loadProduct]);
 
   function handleChange(
     e: React.ChangeEvent<
@@ -112,56 +104,6 @@ export default function EditProductPage() {
     const name = e.target.name;
     const value = e.target.value;
     setForm((prev) => ({ ...prev, [name]: value }));
-  }
-
-  function handleNewImageSelect(e: React.ChangeEvent<HTMLInputElement>): void {
-    const files = Array.from(e.target.files || []);
-    setNewImages((prev) => [...prev, ...files]);
-    setNewPreviews((prev) => [
-      ...prev,
-      ...files.map((f) => URL.createObjectURL(f)),
-    ]);
-  }
-
-  function removeNewImage(index: number): void {
-    setNewImages((prev) => prev.filter((_, i) => i !== index));
-    setNewPreviews((prev) => prev.filter((_, i) => i !== index));
-  }
-
-  async function removeExistingImage(imageId: string): Promise<void> {
-    const confirmed = confirm("Remove this image?");
-    if (!confirmed) return;
-
-    const result = await supabase
-      .from("product_images")
-      .delete()
-      .eq("id", imageId);
-    if (result.error) {
-      alert("Failed to remove image");
-      return;
-    }
-    setExistingImages((prev) => prev.filter((img) => img.id !== imageId));
-  }
-
-  async function setPrimaryImage(imageId: string): Promise<void> {
-    await supabase
-      .from("product_images")
-      .update({ is_primary: false })
-      .eq("product_id", productId);
-
-    const result = await supabase
-      .from("product_images")
-      .update({ is_primary: true })
-      .eq("id", imageId);
-
-    if (result.error) {
-      alert("Failed to set primary image");
-      return;
-    }
-
-    setExistingImages((prev) =>
-      prev.map((img) => ({ ...img, is_primary: img.id === imageId })),
-    );
   }
 
   function toggleTag(tagId: string): void {
@@ -240,13 +182,11 @@ export default function EditProductPage() {
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-6 max-w-2xl">
         <ProductFormFields form={form} onChange={handleChange} showSlug />
-
         <CategorySelect
           value={form.category_id}
           options={flatCategories}
           onChange={handleChange}
         />
-
         <TagSelector
           tags={tags}
           selectedIds={selectedTagIds}
@@ -259,7 +199,7 @@ export default function EditProductPage() {
           </label>
           <ExistingImageGrid
             images={existingImages}
-            onSetPrimary={setPrimaryImage}
+            onSetPrimary={(imageId) => setPrimaryImage(productId, imageId)}
             onRemove={removeExistingImage}
           />
         </div>
